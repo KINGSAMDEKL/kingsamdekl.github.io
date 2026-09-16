@@ -5,6 +5,7 @@
     <lastmod>2026-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
   <url>
     <loc>https://kingsamdekl.github.io/about.html</loc>
     <lastmod>2026-09-16</lastmod>
@@ -18,27 +19,99 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://kingsamdekl.github.io/article.html?id=wire-tun-vpn-guide</loc>
+    <loc>https://kingsamdekl.github.io/article.html?id=http-custom-sni-payload-guide-2026</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kingsamdekl.github.io/article.html?id=top-ai-productivity-tools-2026</loc>
+    <loc>https://kingsamdekl.github.io/article.html?id=ha-tunnel-plus-hat-config-guide</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kingsamdekl.github.io/article.html?id=napsternetv-v2ray-vless-tutorial</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kingsamdekl.github.io/article.html?id=cloudflare-warp-plus-unlimited-guide</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kingsamdekl.github.io/article.html?id=bypass-isp-throttling-mtu-tcp-bbr</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kingsamdekl.github.io/article.html?id=hidden-android-16-developer-tweaks</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kingsamdekl.github.io/article.html?id=termux-android-power-user-setup</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kingsamdekl.github.io/article.html?id=top-local-ai-llm-tools-2026</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kingsamdekl.github.io/article.html?id=ai-automation-n8n-workflows-guide</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kingsamdekl.github.io/article.html?id=stop-mobile-gaming-thermal-throttling</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kingsamdekl.github.io/article.html?id=wire-tun-vpn-guide</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kingsamdekl.github.io/article.html?id=ec-tunnel-pro-setup</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kingsamdekl.github.io/article.html?id=top-ai-productivity-tools-2026</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kingsamdekl.github.io/article.html?id=hidden-android-developer-tweaks</loc>
     <lastmod>2026-09-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kingsamdekl.github.io/article.html?id=flagship-smartphone-camera-teardown</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kingsamdekl.github.io/article.html?id=zero-framework-web-engineering</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>
