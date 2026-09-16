@@ -1318,3 +1318,51 @@ textarea.form-control {
   justify-content: flex-end;
   gap: 12px;
 }
+
+/* =========================================
+   RESPONSIVE ENHANCEMENTS FOR ADMIN CMS
+   ========================================= */
+@media (max-width: 768px) {
+  .admin-header {
+    padding: 0 16px;
+    height: 62px;
+  }
+  .admin-brand-title {
+    font-size: 15px;
+  }
+  .admin-brand-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+  .admin-tabs-bar {
+    padding: 0 16px;
+  }
+  .admin-container {
+    padding: 0 16px;
+    margin-top: 18px;
+  }
+  .admin-header-actions {
+    gap: 8px;
+  }
+  .btn-admin {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-badge-portal {
+    display: none;
+  }
+  .admin-header-actions .btn-admin span {
+    display: none;
+  }
+  .admin-tab-btn {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+  .admin-modal-box {
+    padding: 20px 16px;
+  }
+}

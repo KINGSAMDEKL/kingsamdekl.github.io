@@ -198,11 +198,41 @@ img {
   background: var(--accent-blue);
 }
 
-/* Utility Classes */
+/* Responsive Global Reset & Containers */
 .container {
+  width: 100%;
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 clamp(14px, 3.5vw, 24px);
+}
+
+/* Global Media & Content Overflow Protection */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+iframe {
+  max-width: 100%;
+  border: 0;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+pre, code {
+  max-width: 100%;
+}
+
+/* Smooth Tap Targets */
+button, a, input, select {
+  -webkit-tap-highlight-color: transparent;
 }
 
 .gradient-text {

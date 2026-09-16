@@ -91,7 +91,7 @@
     </nav>
 
     <!-- Main Article & Sidebar Grid -->
-    <div class="main-layout" style="grid-template-columns: 1fr 320px;">
+    <div class="main-layout">
       <!-- Article Content Column -->
       <article>
         <!-- Header -->
@@ -120,7 +120,7 @@
           <button class="play-pause-btn" id="tts-play-btn" title="Play / Pause Audio" aria-label="Listen to Article">
             <i class="ph ph-play"></i>
           </button>
-          <div style="flex: 1;">
+          <div style="flex: 1; min-width: 180px;">
             <div style="font-size: 13.5px; font-weight: 700;" id="tts-status">Listen to this article</div>
             <div style="font-size: 11.5px; color: var(--text-muted);">Native in-browser text-to-speech audio reader</div>
           </div>
@@ -148,7 +148,7 @@
         </div>
 
         <!-- In-Article Responsive Ad Zone -->
-        <div class="widget-card ad-slot" style="margin: 40px 0; min-height: 180px;">
+        <div class="widget-card ad-slot" style="margin: 40px 0; min-height: 140px;">
           <span class="ad-label">Sponsored Resource</span>
           <ins class="adsbygoogle"
                style="display:block; text-align:center;"
@@ -162,7 +162,7 @@
         </div>
 
         <!-- Social Share Bar -->
-        <div style="margin: 48px 0; padding: 24px; border-radius: var(--radius-md); background: var(--bg-surface); border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+        <div class="article-share-box">
           <div style="font-weight: 700; font-size: 15px;">Share this story:</div>
           <div style="display: flex; align-items: center; gap: 10px;">
             <a id="share-x" href="#" target="_blank" rel="noopener" class="action-icon-btn" title="Share on X / Twitter"><i class="ph ph-x-logo"></i></a>
@@ -175,7 +175,7 @@
         <!-- Related Articles Section -->
         <div style="margin-top: 56px;">
           <h3 style="margin-bottom: 24px; font-size: 1.4rem;">Related Stories</h3>
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;" id="related-articles-grid">
+          <div class="related-articles-grid" id="related-articles-grid">
             <!-- Injected by article-viewer.js -->
           </div>
         </div>
@@ -227,7 +227,7 @@
     <div class="container">
       <div class="sub-footer">
         <div>&copy; <script>document.write(new Date().getFullYear())</script> KINGSAMTECH PRO. All rights reserved.</div>
-        <div style="display: flex; gap: 20px; align-items: center;">
+        <div class="sub-footer-links" style="display: flex; gap: 20px; align-items: center;">
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
           <a href="privacy.html">Privacy</a>
