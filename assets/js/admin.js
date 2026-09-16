@@ -17,7 +17,7 @@
     LAST_SYNC: 'kst_last_sync'
   };
 
-  const DEFAULT_REPO = 'KINGSAMDEKL/github-blog';
+  const DEFAULT_REPO = 'KINGSAMDEKL/kingsamdekl.github.io';
   const DEFAULT_AUTHOR = {
     name: 'Kingsam',
     role: 'Lead Tech Editor',
