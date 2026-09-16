@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KINGSAMTECH PRO — Modern Tech News, Reviews &amp; Tutorials</title>
+  <meta name="description" content="Discover cutting-edge technology reviews, AI workflows, Android optimization guides, network security tutorials, and modern digital insights."/>
+  <meta name="theme-color" content="#050a14"/>
+
+  <!-- Open Graph & Social Meta -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="KINGSAMTECH PRO — Modern Tech News, Reviews &amp; Tutorials"/>
+  <meta property="og:description" content="The premier destination for in-depth tech tutorials, gadget teardowns, and AI productivity tools."/>
+  <meta property="og:image" content="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <!-- Google Fonts: Space Grotesk & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet"/>
+
+  <!-- Phosphor Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css"/>
+
+  <!-- Core & Components Styles -->
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="stylesheet" href="assets/css/components.css"/>
+</head>
+<body>
+
+  <!-- Sticky Glassmorphic Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">
+          <i class="ph ph-cpu"></i>
+        </div>
+        <span>KINGSAMTECH<span class="brand-pro">PRO</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="index.html#stories" class="nav-link">Articles</a>
+        <a href="playground.html" class="nav-link">
+          <i class="ph ph-browsers" style="vertical-align: -1px;"></i> Web Playground
+        </a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="privacy.html" class="nav-link">Privacy</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- Quick Search / Command Palette trigger -->
+        <button class="search-trigger-btn" aria-label="Open Command Palette (Cmd+K)">
+          <i class="ph ph-magnifying-glass"></i>
+          <span>Search</span>
+          <kbd class="kbd-shortcut">⌘K</kbd>
+        </button>
+
+        <!-- Bookmarks Read Later Button -->
+        <button class="action-icon-btn open-bookmarks-trigger" title="Saved Stories" aria-label="Saved Bookmarks">
+          <i class="ph ph-bookmark-simple"></i>
+          <span class="badge-count bookmark-count-badge" style="display: none;">0</span>
+        </button>
+
+        <!-- Dark/Light Theme Toggle -->
+        <button class="action-icon-btn theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+          <i class="ph ph-sun"></i>
+        </button>
+
+        <!-- Mobile Menu Trigger -->
+        <button class="action-icon-btn mobile-menu-btn" id="mobile-drawer-toggle" aria-label="Open Menu">
+          <i class="ph ph-list"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop & Drawer -->
+  <div id="drawer-backdrop" style="position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2050; opacity: 0; visibility: hidden; transition: all 0.3s;"></div>
+  <div id="mobile-drawer" style="position: fixed; top: 0; left: 0; width: 280px; height: 100vh; background: var(--bg-surface-elevated); z-index: 2100; transform: translateX(-100%); transition: transform 0.3s ease; padding: 24px; display: flex; flex-direction: column; gap: 20px;">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <span style="font-weight: 800; font-family: var(--font-heading);">MENU</span>
+      <button id="mobile-drawer-close" style="background: none; border: none; color: var(--text-primary); font-size: 20px; cursor: pointer;">
+        <i class="ph ph-x"></i>
+      </button>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 14px; font-size: 16px; font-weight: 600;">
+      <a href="index.html" style="color: var(--text-primary);">Home</a>
+      <a href="index.html#stories" style="color: var(--text-secondary);">Latest Stories</a>
+      <a href="playground.html" style="color: var(--accent-cyan);"><i class="ph ph-browsers"></i> Web Playground</a>
+      <a href="about.html" style="color: var(--text-secondary);">About Us</a>
+      <a href="privacy.html" style="color: var(--text-secondary);">Privacy Policy</a>
+    </div>
+  </div>
+
+  <!-- Breaking Tech News Ticker -->
+  <div class="news-ticker">
+    <div class="container ticker-inner">
+      <div class="ticker-badge">
+        <span class="ticker-pulse"></span>
+        <span>Breaking</span>
+      </div>
+      <div class="ticker-content">
+        <div class="ticker-track">
+          <a href="article.html?id=wire-tun-vpn-guide">Wire Tun APK: Complete Setup &amp; High-Speed Connection Guide</a>
+          <a href="article.html?id=top-ai-productivity-tools-2026">The 7 Best AI Productivity Tools Revolutionizing Everyday Workflows</a>
+          <a href="article.html?id=ec-tunnel-pro-setup">EC Tunnel Pro: Fast Secure SSH/SSL Network Tunneling Explained</a>
+          <a href="playground.html">Try our new In-Browser Web Sandbox Playground!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Main Featured Card -->
+        <a href="article.html?id=wire-tun-vpn-guide" class="hero-main-card" style="background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80');">
+          <div class="hero-content">
+            <span class="badge" style="width: fit-content;">Featured Story</span>
+            <h1 style="color: #fff; font-size: clamp(1.8rem, 3.2vw, 2.6rem);">Wire Tun APK: Complete Setup, Optimization &amp; High-Speed Connection Guide</h1>
+            <p style="color: rgba(255, 255, 255, 0.85); font-size: 15px; max-width: 680px;">
+              Master mobile network tunneling, reduce cellular ping, and configure custom secure DNS servers for safe private browsing.
+            </p>
+            <div style="display: flex; align-items: center; gap: 14px; color: #fff; font-size: 13px; margin-top: 6px;">
+              <span style="display: flex; align-items: center; gap: 6px;"><i class="ph ph-user-circle"></i> Kingsam</span>
+              <span>•</span>
+              <span style="color: var(--accent-cyan); font-weight: 600;"><i class="ph ph-clock"></i> 5 min read</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Side Trending Column -->
+        <div class="hero-side-column">
+          <a href="article.html?id=top-ai-productivity-tools-2026" class="hero-side-card">
+            <div class="hero-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=300&q=80" alt="AI Tools"/>
+            </div>
+            <div>
+              <span class="badge" style="font-size: 9px; padding: 2px 8px; margin-bottom: 6px;">AI &amp; Tech</span>
+              <h4 style="font-size: 14px; line-height: 1.35; margin-bottom: 6px;">The 7 Best AI Productivity Tools for Everyday Workflows</h4>
+              <span style="font-size: 12px; color: var(--text-muted);"><i class="ph ph-clock"></i> 6 min read</span>
+            </div>
+          </a>
+
+          <a href="article.html?id=ec-tunnel-pro-setup" class="hero-side-card">
+            <div class="hero-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=300&q=80" alt="EC Tunnel Pro"/>
+            </div>
+            <div>
+              <span class="badge" style="font-size: 9px; padding: 2px 8px; margin-bottom: 6px;">Security</span>
+              <h4 style="font-size: 14px; line-height: 1.35; margin-bottom: 6px;">EC Tunnel Pro: Fast Secure SSH/SSL Network Tunneling</h4>
+              <span style="font-size: 12px; color: var(--text-muted);"><i class="ph ph-clock"></i> 4 min read</span>
+            </div>
+          </a>
+
+          <a href="playground.html" class="hero-side-card" style="border-color: rgba(6, 182, 212, 0.4); background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(59, 130, 246, 0.05));">
+            <div class="hero-thumb-wrap" style="background: var(--grad-primary); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 32px;">
+              <i class="ph ph-browsers"></i>
+            </div>
+            <div>
+              <span class="badge" style="font-size: 9px; padding: 2px 8px; margin-bottom: 6px; background: rgba(6, 182, 212, 0.2);">Feature</span>
+              <h4 style="font-size: 14px; line-height: 1.35; margin-bottom: 6px;">Web Sandbox / In-Browser Playground</h4>
+              <span style="font-size: 12px; color: var(--accent-cyan); font-weight: 600;">Launch Live Tool &rarr;</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter & Search Section -->
+  <section class="filter-section" id="stories">
+    <div class="container">
+      <div class="filter-bar">
+        <!-- Horizontal Scrollable Category Pills -->
+        <div class="category-pills">
+          <button class="cat-pill active" data-cat="all">All Stories</button>
+          <button class="cat-pill" data-cat="vpn">Cybersecurity &amp; VPN</button>
+          <button class="cat-pill" data-cat="ai">AI &amp; Machine Learning</button>
+          <button class="cat-pill" data-cat="android">Android &amp; Apps</button>
+          <button class="cat-pill" data-cat="reviews">Hardware Reviews</button>
+          <button class="cat-pill" data-cat="tutorials">Tutorials</button>
+        </div>
+
+        <!-- Real-Time Search Box -->
+        <div class="search-input-wrap">
+          <i class="ph ph-magnifying-glass search-icon"></i>
+          <input type="text" id="main-search-input" placeholder="Search by keyword, tool or topic..." autocomplete="off"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <main class="container main-layout">
+    <!-- Left Column: Articles Grid -->
+    <div>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+        <h2 style="font-size: 1.6rem; display: flex; align-items: center; gap: 10px;">
+          <span>Latest Articles</span>
+          <span class="badge" id="search-result-count" style="font-size: 11px;">6 stories</span>
+        </h2>
+      </div>
+
+      <div class="posts-grid" id="articles-grid">
+        <!-- Rendered dynamically by search.js -->
+      </div>
+    </div>
+
+    <!-- Right Column: Sidebar -->
+    <aside class="sidebar">
+      <!-- Newsletter Card -->
+      <div class="widget-card">
+        <h3 class="widget-title">Tech Insider Dispatch</h3>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 18px;">
+          Join 12,000+ engineers and power users getting actionable tutorials, app teardowns, and security insights every Friday.
+        </p>
+        <form class="newsletter-form">
+          <input type="email" class="newsletter-input" placeholder="Enter your email address..." required/>
+          <button type="submit" class="btn-primary" style="width: 100%;">
+            <span>Subscribe Free</span>
+            <i class="ph ph-arrow-right"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- In-Browser Sandbox Promo -->
+      <div class="widget-card" style="background: radial-gradient(circle at top right, rgba(59,130,246,0.12), transparent 70%), var(--bg-surface);">
+        <span class="badge" style="margin-bottom: 12px;">Interactive Feature</span>
+        <h3 style="font-size: 1.15rem; margin-bottom: 10px;">In-Browser Web Sandbox</h3>
+        <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 16px;">
+          Test HTML, modern CSS, and JavaScript in our isolated live code editor right in your browser.
+        </p>
+        <a href="playground.html" class="btn-primary" style="display: inline-flex; width: 100%; text-decoration: none;">
+          <span>Launch Playground</span>
+          <i class="ph ph-browsers"></i>
+        </a>
+      </div>
+
+      <!-- Responsive AdSense Ad Slot Placeholder -->
+      <div class="widget-card ad-slot">
+        <span class="ad-label">Advertisement</span>
+        <!-- Google AdSense Responsive Unit -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-6694858954651374"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <div style="font-size: 12px; color: var(--text-muted); padding: 20px;">
+          <i class="ph ph-sparkle" style="color: var(--accent-cyan); font-size: 20px; display: block; margin-bottom: 6px;"></i>
+          Google AdSense Native Zone
+        </div>
+      </div>
+
+      <!-- Social Communities -->
+      <div class="widget-card">
+        <h3 class="widget-title">Connect &amp; Follow</h3>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center;">
+          <a href="https://x.com" target="_blank" rel="noopener" class="action-icon-btn" style="width: auto; height: 44px; border-radius: var(--radius-sm);">
+            <i class="ph ph-x-logo"></i>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener" class="action-icon-btn" style="width: auto; height: 44px; border-radius: var(--radius-sm);">
+            <i class="ph ph-youtube-logo"></i>
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener" class="action-icon-btn" style="width: auto; height: 44px; border-radius: var(--radius-sm);">
+            <i class="ph ph-github-logo"></i>
+          </a>
+          <a href="https://telegram.org" target="_blank" rel="noopener" class="action-icon-btn" style="width: auto; height: 44px; border-radius: var(--radius-sm);">
+            <i class="ph ph-telegram-logo"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Cookie Consent Banner -->
+  <div class="cookie-banner" id="cookie-consent-banner">
+    <p style="margin: 0; font-size: 13.5px; color: var(--text-secondary); max-width: 620px;">
+      We use cookies and local storage to personalize your reading experience, remember your bookmarks, and analyze traffic. By using KINGSAMTECH PRO, you agree to our <a href="privacy.html" style="color: var(--accent-cyan); text-decoration: underline;">Privacy Policy</a>.
+    </p>
+    <button class="btn-primary" id="cookie-accept-btn" style="padding: 8px 22px;">Accept &amp; Continue</button>
+  </div>
+
+  <!-- Modern Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="brand-logo" style="margin-bottom: 16px;">
+            <div class="brand-icon"><i class="ph ph-cpu"></i></div>
+            <span>KINGSAMTECH<span class="brand-pro">PRO</span></span>
+          </a>
+          <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; max-width: 320px;">
+            Your premier destination for high-speed mobile network tutorials, hardware teardowns, AI workflows, and zero-framework web engineering.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#stories">Latest Stories</a></li>
+            <li><a href="playground.html">Web Sandbox Playground</a></li>
+            <li><a href="about.html">About the Team</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal &amp; Policy</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+            <li><a href="ads.txt">ads.txt Verification</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Editorial Focus</h4>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 14px;">
+            Built with pure HTML5, modern Vanilla CSS, and ES6 JavaScript. Fast, secure, and hosted on GitHub Pages.
+          </p>
+          <span class="badge" style="border-color: var(--border-subtle); color: var(--text-muted);">
+            <i class="ph ph-git-branch"></i> GitHub Hosted
+          </span>
+        </div>
+      </div>
+
+      <div class="sub-footer">
+        <div>
+          &copy; <script>document.write(new Date().getFullYear())</script> KINGSAMTECH PRO. All rights reserved.
+        </div>
+        <div style="display: flex; gap: 20px;">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="disclaimer.html">Disclaimer</a>
+          <a href="sitemap.xml">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core Scripts -->
+  <script src="assets/js/articles-data.js"></script>
+  <script src="assets/js/bookmarks.js"></script>
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/command-palette.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kingsamdekl.github.io/kingsamtech-blog/sitemap.xml

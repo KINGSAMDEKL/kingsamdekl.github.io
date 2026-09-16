@@ -1,0 +1,237 @@
+/* ============================================================
+   KINGSAMTECH PRO — Modern Design System & Base CSS
+   Tech Blue / Cyan Glow / Deep Midnight / Glassmorphism
+   ============================================================ */
+
+:root {
+  /* Color Palette - Dark Mode Default */
+  --bg-primary: #050a14;
+  --bg-secondary: #0a1224;
+  --bg-surface: #0e1830;
+  --bg-surface-elevated: #142244;
+  --bg-glass: rgba(14, 24, 48, 0.72);
+  --bg-glass-hover: rgba(20, 34, 68, 0.85);
+
+  /* Accents & Brand Gradients */
+  --accent-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --accent-violet: #8b5cf6;
+  --accent-pink: #ec4899;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+
+  --grad-primary: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #8b5cf6 100%);
+  --grad-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  --grad-glow: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(6, 182, 212, 0.1) 45%, transparent 70%);
+
+  /* Text & Borders */
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-glow: rgba(59, 130, 246, 0.4);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 30px -10px rgba(2, 8, 23, 0.6);
+  --shadow-lg: 0 20px 45px -12px rgba(2, 8, 23, 0.8);
+  --shadow-glow: 0 0 28px -4px rgba(59, 130, 246, 0.35);
+
+  /* Layout & Sizing */
+  --container-max: 1360px;
+  --header-height: 72px;
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --trans-fast: 0.18s ease;
+  --trans-medium: 0.3s var(--ease-spring);
+  --trans-slow: 0.5s var(--ease-spring);
+
+  /* Fonts */
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Light Mode Overrides */
+[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.82);
+  --bg-glass-hover: rgba(255, 255, 255, 0.95);
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --border-medium: rgba(15, 23, 42, 0.14);
+  --border-glow: rgba(59, 130, 246, 0.4);
+
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 12px 32px -10px rgba(15, 23, 42, 0.12);
+  --shadow-lg: 0 24px 50px -15px rgba(15, 23, 42, 0.16);
+  --shadow-glow: 0 0 25px -4px rgba(59, 130, 246, 0.22);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 24px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.68;
+  font-size: 15.5px;
+  overflow-x: hidden;
+  transition: background-color var(--trans-slow), color var(--trans-slow);
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Ambient Floating Glow Orbs */
+body::before, body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(100px);
+  opacity: 0.45;
+  transition: opacity var(--trans-slow);
+}
+
+body::before {
+  width: 550px;
+  height: 550px;
+  top: -150px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.45), transparent 70%);
+  animation: floatOrb 22s ease-in-out infinite alternate;
+}
+
+body::after {
+  width: 600px;
+  height: 600px;
+  top: 40%;
+  right: -150px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.35), transparent 70%);
+  animation: floatOrb 26s ease-in-out infinite alternate-reverse;
+}
+
+[data-theme="light"] body::before,
+[data-theme="light"] body::after {
+  opacity: 0.18;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 40px) scale(1.1); }
+  100% { transform: translate(-40px, 80px) scale(0.95); }
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); }
+h2 { font-size: clamp(1.6rem, 2.8vw, 2.2rem); }
+h3 { font-size: clamp(1.25rem, 2vw, 1.55rem); }
+h4 { font-size: 1.15rem; }
+
+p { margin-bottom: 1.2rem; }
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: color var(--trans-fast);
+}
+
+a:hover {
+  color: var(--accent-cyan);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-surface-elevated);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--bg-primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue);
+}
+
+/* Utility Classes */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.gradient-text {
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-full);
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(6, 182, 212, 0.28);
+}

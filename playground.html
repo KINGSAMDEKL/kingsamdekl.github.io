@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>In-Browser Web Sandbox &amp; Playground — KINGSAMTECH PRO</title>
+  <meta name="description" content="An interactive in-browser developer sandbox. Experiment with HTML5, modern CSS glassmorphism, and JavaScript live in your browser."/>
+  <meta name="theme-color" content="#050a14"/>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+
+  <!-- Phosphor Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css"/>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="stylesheet" href="assets/css/components.css"/>
+  <link rel="stylesheet" href="assets/css/playground.css"/>
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon"><i class="ph ph-cpu"></i></div>
+        <span>KINGSAMTECH<span class="brand-pro">PRO</span></span>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#stories" class="nav-link">Articles</a>
+        <a href="playground.html" class="nav-link active"><i class="ph ph-browsers"></i> Web Playground</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="privacy.html" class="nav-link">Privacy</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="search-trigger-btn" aria-label="Open Command Palette (Cmd+K)">
+          <i class="ph ph-magnifying-glass"></i>
+          <span>Search</span>
+          <kbd class="kbd-shortcut">⌘K</kbd>
+        </button>
+        <button class="action-icon-btn open-bookmarks-trigger" title="Saved Stories">
+          <i class="ph ph-bookmark-simple"></i>
+          <span class="badge-count bookmark-count-badge" style="display: none;">0</span>
+        </button>
+        <button class="action-icon-btn theme-toggle-btn" title="Toggle Theme">
+          <i class="ph ph-sun"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Playground -->
+  <main class="container playground-container">
+    <div class="playground-header">
+      <div class="playground-title">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="badge"><i class="ph ph-sparkle"></i> Live Web Tool</span>
+          <span class="badge" style="background: rgba(16, 185, 129, 0.12); color: var(--accent-emerald); border-color: rgba(16, 185, 129, 0.3);">Real-time Sandbox</span>
+        </div>
+        <h1 style="font-size: 2.2rem; margin-top: 4px;">In-Browser Web Playground &amp; Browser Simulator</h1>
+        <p style="color: var(--text-secondary); font-size: 14.5px; margin: 0;">
+          Write and test HTML, modern CSS, and JavaScript with instant live preview in an isolated simulated browser environment.
+        </p>
+      </div>
+
+      <div class="playground-actions">
+        <select class="preset-select" id="preset-select" aria-label="Load Code Preset">
+          <option value="glass-card">Preset: 3D Glassmorphic Card</option>
+          <option value="neon-button">Preset: Neon Glow Button</option>
+          <option value="tech-clock">Preset: Real-Time HUD Clock</option>
+        </select>
+        <button class="btn-primary" id="run-code-btn" title="Execute Code Now">
+          <i class="ph ph-play-fill"></i>
+          <span>Run Code</span>
+        </button>
+        <button class="action-icon-btn" id="reset-code-btn" title="Reset to Preset Default">
+          <i class="ph ph-arrow-counter-clockwise"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Browser Mockup Window -->
+    <div class="browser-frame">
+      <!-- Top Chrome Toolbar -->
+      <div class="browser-toolbar">
+        <div class="browser-dots">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </div>
+
+        <div class="browser-nav-btns">
+          <button class="browser-nav-btn" title="Back"><i class="ph ph-arrow-left"></i></button>
+          <button class="browser-nav-btn" title="Forward"><i class="ph ph-arrow-right"></i></button>
+          <button class="browser-nav-btn" id="browser-reload-btn" title="Reload Sandbox"><i class="ph ph-arrow-clockwise"></i></button>
+        </div>
+
+        <div class="browser-address-bar">
+          <i class="ph ph-lock-simple"></i>
+          <span>https://sandbox.kingsamtech.pro/live-preview</span>
+        </div>
+
+        <!-- Viewport Size Switcher -->
+        <div class="device-viewport-btns">
+          <button class="viewport-btn active" data-view="desktop" title="Desktop Viewport">
+            <i class="ph ph-desktop"></i>
+          </button>
+          <button class="viewport-btn" data-view="tablet" title="Tablet Viewport (768px)">
+            <i class="ph ph-device-tablet"></i>
+          </button>
+          <button class="viewport-btn" data-view="mobile" title="Mobile Viewport (375px)">
+            <i class="ph ph-device-mobile"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Split-Pane Workspace -->
+      <div class="playground-workspace">
+        <!-- Editor Left Pane -->
+        <div class="editor-pane">
+          <div class="editor-tabs">
+            <button class="editor-tab active" data-lang="html">
+              <i class="ph ph-code"></i> HTML
+            </button>
+            <button class="editor-tab" data-lang="css">
+              <i class="ph ph-paint-brush"></i> CSS
+            </button>
+            <button class="editor-tab" data-lang="js">
+              <i class="ph ph-file-js"></i> JavaScript
+            </button>
+
+            <label style="margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--text-muted); cursor: pointer; padding-right: 14px;">
+              <input type="checkbox" id="auto-run-check" checked/>
+              <span>Live Auto-Run</span>
+            </label>
+          </div>
+
+          <textarea class="code-textarea" id="playground-editor" spellcheck="false" placeholder="Write your code here..."></textarea>
+        </div>
+
+        <!-- Preview Right Pane -->
+        <div class="preview-pane">
+          <iframe class="preview-iframe" id="preview-frame" sandbox="allow-scripts allow-modals" title="Live Preview"></iframe>
+        </div>
+      </div>
+
+      <!-- Bottom Console Status Drawer -->
+      <div class="console-drawer">
+        <div class="console-status">
+          <i class="ph ph-terminal-window"></i>
+          <span id="console-output-text">Sandbox ready. Press Run or edit code to refresh.</span>
+        </div>
+        <span style="font-size: 11px; opacity: 0.7;">Isolated Sandbox Runtime</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" style="margin-top: 64px;">
+    <div class="container">
+      <div class="sub-footer">
+        <div>&copy; <script>document.write(new Date().getFullYear())</script> KINGSAMTECH PRO. Built for modern tech creators.</div>
+        <div style="display: flex; gap: 20px;">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/articles-data.js"></script>
+  <script src="assets/js/bookmarks.js"></script>
+  <script src="assets/js/playground.js"></script>
+  <script src="assets/js/command-palette.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
