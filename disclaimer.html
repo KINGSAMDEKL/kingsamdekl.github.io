@@ -1,6 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
+  <script>
+    (function() {
+      var t = localStorage.getItem('kingsamtech_theme') || localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Disclaimer — KINGSAMTECH PRO</title>
@@ -21,7 +26,6 @@
       <nav class="nav-menu">
         <a href="index.html" class="nav-link">Home</a>
         <a href="index.html#stories" class="nav-link">Articles</a>
-        <a href="playground.html" class="nav-link"><i class="ph ph-browsers"></i> Web Playground</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="privacy.html" class="nav-link">Privacy</a>
       </nav>

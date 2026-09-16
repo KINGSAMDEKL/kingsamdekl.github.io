@@ -1016,7 +1016,31 @@
         else if (format === 'quote') insertFormat('\n<blockquote>', '</blockquote>\n');
         else if (format === 'ul') insertFormat('\n<ul>\n  <li>', '</li>\n</ul>\n');
         else if (format === 'link') insertFormat('<a href="https://example.com">', '</a>');
-        else if (format === 'image') insertFormat('<img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80" alt="');
+        else if (format === 'extlink') insertFormat('<a href="https://example.com" target="_blank" rel="noopener noreferrer" class="external-link">', '</a>');
+        else if (format === 'image') {
+          const caption = prompt('Image caption / alt text:', 'Figure illustration');
+          insertFormat(`\n<figure class="article-figure">\n  <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80" alt="${caption || 'Article image'}"/>\n  <figcaption>${caption || 'Article illustration and diagram'}</figcaption>\n</figure>\n`);
+        }
+        else if (format === 'youtube') {
+          let videoUrl = prompt('Enter YouTube Video URL or Video ID (e.g. dQw4w9WgXcQ or https://youtu.be/...):', 'dQw4w9WgXcQ');
+          if (videoUrl) {
+            let vidId = videoUrl.trim();
+            if (vidId.includes('v=')) vidId = vidId.split('v=')[1].split('&')[0];
+            else if (vidId.includes('youtu.be/')) vidId = vidId.split('youtu.be/')[1].split('?')[0];
+            else if (vidId.includes('embed/')) vidId = vidId.split('embed/')[1].split('?')[0];
+            insertFormat(`\n<div class="video-embed-container">\n  <iframe src="https://www.youtube-nocookie.com/embed/${vidId}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n</div>\n`);
+          }
+        }
+        else if (format === 'download') {
+          const fileName = prompt('File / APK Name:', 'Wire Tun APK (High Speed)');
+          const version = prompt('Version number:', 'v2.4 Pro');
+          const size = prompt('File size:', '18.4 MB');
+          const downloadUrl = prompt('Direct Download URL:', 'https://example.com/download.apk');
+          insertFormat(`\n<!-- Professional Tech Download Card -->\n<div class="download-card">\n  <div class="download-card-header">\n    <div class="download-card-info">\n      <div class="download-file-icon"><i class="ph ph-file-arrow-down"></i></div>\n      <div>\n        <div class="download-meta-title">${fileName || 'App Installer'}</div>\n        <div class="download-meta-badges">\n          <span class="download-badge">${version || 'Latest'}</span>\n          <span class="download-badge">${size || 'APK'}</span>\n          <span class="download-badge verified"><i class="ph ph-shield-check"></i> VirusTotal Clean</span>\n        </div>\n      </div>\n    </div>\n  </div>\n  <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 0;">Verified package installer. Safe to install on all compatible mobile devices.</p>\n  <div class="download-actions-row">\n    <a href="${downloadUrl || '#'}" target="_blank" rel="noopener noreferrer" class="btn-download-primary">\n      <i class="ph ph-download-simple"></i> Download File Now\n    </a>\n    <div class="download-mirrors-list">\n      <span>Mirrors:</span>\n      <a href="${downloadUrl || '#'}" target="_blank" rel="noopener noreferrer">Fast Mirror</a>\n    </div>\n  </div>\n</div>\n`);
+        }
+        else if (format === 'video') {
+          insertFormat(`\n<div class="html5-video-card">\n  <video controls poster="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80">\n    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"/>\n    Your browser does not support HTML5 video.\n  </video>\n  <div class="html5-video-caption"><i class="ph ph-video"></i> Video Tutorial Teardown</div>\n</div>\n`);
+        }
       });
     });
 

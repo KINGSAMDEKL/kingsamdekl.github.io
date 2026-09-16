@@ -102,7 +102,7 @@ body {
   line-height: 1.68;
   font-size: 15.5px;
   overflow-x: hidden;
-  transition: background-color var(--trans-slow), color var(--trans-slow);
+  transition: background-color 0.15s ease, color 0.15s ease;
   position: relative;
   min-height: 100vh;
 }

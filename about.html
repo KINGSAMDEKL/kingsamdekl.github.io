@@ -1,6 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
+  <script>
+    (function() {
+      var t = localStorage.getItem('kingsamtech_theme') || localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us — KINGSAMTECH PRO</title>
@@ -31,7 +36,6 @@
       <nav class="nav-menu">
         <a href="index.html" class="nav-link">Home</a>
         <a href="index.html#stories" class="nav-link">Articles</a>
-        <a href="playground.html" class="nav-link"><i class="ph ph-browsers"></i> Web Playground</a>
         <a href="about.html" class="nav-link active">About</a>
         <a href="privacy.html" class="nav-link">Privacy</a>
       </nav>
@@ -47,7 +51,7 @@
     <span class="badge" style="margin-bottom: 12px;">About Us</span>
     <h1 style="margin-bottom: 24px;">Demystifying Modern Technology for Everyone</h1>
     <p class="lead" style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 36px;">
-      Welcome to <strong>KINGSAMTECH PRO</strong> — an independent technology publication and interactive playground dedicated to practical software guides, hardware analysis, network security, and AI workflows.
+      Welcome to <strong>KINGSAMTECH PRO</strong> — an independent technology publication dedicated to practical software guides, hardware analysis, network security, and AI productivity workflows.
     </p>
 
     <div style="border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 40px; box-shadow: var(--shadow-md);">

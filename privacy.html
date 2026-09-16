@@ -1,6 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
+  <script>
+    (function() {
+      var t = localStorage.getItem('kingsamtech_theme') || localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Privacy Policy — KINGSAMTECH PRO</title>
@@ -21,7 +26,6 @@
       <nav class="nav-menu">
         <a href="index.html" class="nav-link">Home</a>
         <a href="index.html#stories" class="nav-link">Articles</a>
-        <a href="playground.html" class="nav-link"><i class="ph ph-browsers"></i> Web Playground</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="privacy.html" class="nav-link active">Privacy</a>
       </nav>
@@ -40,7 +44,7 @@
       <p>At <strong>KINGSAMTECH PRO</strong>, accessible from our GitHub Pages site, one of our main priorities is the privacy of our visitors. This Privacy Policy outlines the types of information collected and how it is utilized.</p>
 
       <h2>1. Information We Collect</h2>
-      <p>When you browse KINGSAMTECH PRO, you can enjoy all articles, guides, and the Web Sandbox without providing personal identification. If you opt to subscribe to our newsletter or contact us, we collect only your provided email address solely to deliver requested updates.</p>
+      <p>When you browse KINGSAMTECH PRO, you can enjoy all articles and tutorials without providing personal identification. If you opt to subscribe to our newsletter or contact us, we collect only your provided email address solely to deliver requested updates.</p>
 
       <h2>2. Cookies and Local Storage</h2>
       <p>KINGSAMTECH PRO uses browser <code>localStorage</code> solely to save your local preferences: your choice between Dark and Light mode, and your "Read Later" saved bookmarks. This data remains on your local machine and is never transmitted to external servers.</p>

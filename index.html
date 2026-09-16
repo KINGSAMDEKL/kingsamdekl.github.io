@@ -1,6 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
+  <script>
+    (function() {
+      var t = localStorage.getItem('kingsamtech_theme') || localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>KINGSAMTECH PRO — Modern Tech News, Reviews &amp; Tutorials</title>
@@ -43,9 +48,6 @@
       <nav class="nav-menu">
         <a href="index.html" class="nav-link active">Home</a>
         <a href="index.html#stories" class="nav-link">Articles</a>
-        <a href="playground.html" class="nav-link">
-          <i class="ph ph-browsers" style="vertical-align: -1px;"></i> Web Playground
-        </a>
         <a href="about.html" class="nav-link">About</a>
         <a href="privacy.html" class="nav-link">Privacy</a>
       </nav>
@@ -88,11 +90,11 @@
       </button>
     </div>
     <div style="display: flex; flex-direction: column; gap: 14px; font-size: 16px; font-weight: 600;">
-      <a href="index.html" style="color: var(--text-primary);">Home</a>
-      <a href="index.html#stories" style="color: var(--text-secondary);">Latest Stories</a>
-      <a href="playground.html" style="color: var(--accent-cyan);"><i class="ph ph-browsers"></i> Web Playground</a>
-      <a href="about.html" style="color: var(--text-secondary);">About Us</a>
-      <a href="privacy.html" style="color: var(--text-secondary);">Privacy Policy</a>
+      <a href="index.html" class="active"><i class="ph ph-house"></i> Home</a>
+      <a href="index.html#stories"><i class="ph ph-article"></i> Latest Articles</a>
+      <a href="about.html"><i class="ph ph-info"></i> About the Author</a>
+      <a href="privacy.html"><i class="ph ph-shield"></i> Privacy Policy</a>
+      <a href="admin.html" style="color: var(--color-primary);"><i class="ph ph-shield-check"></i> Admin Portal</a>
     </div>
   </div>
 
@@ -108,7 +110,7 @@
           <a href="article.html?id=wire-tun-vpn-guide">Wire Tun APK: Complete Setup &amp; High-Speed Connection Guide</a>
           <a href="article.html?id=top-ai-productivity-tools-2026">The 7 Best AI Productivity Tools Revolutionizing Everyday Workflows</a>
           <a href="article.html?id=ec-tunnel-pro-setup">EC Tunnel Pro: Fast Secure SSH/SSL Network Tunneling Explained</a>
-          <a href="playground.html">Try our new In-Browser Web Sandbox Playground!</a>
+          <a href="article.html?id=wire-tun-vpn-guide">⚡ Follow our high-speed Wire Tun APK setup &amp; latency guide!</a>
         </div>
       </div>
     </div>
@@ -158,14 +160,14 @@
             </div>
           </a>
 
-          <a href="playground.html" class="hero-side-card" style="border-color: rgba(6, 182, 212, 0.4); background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(59, 130, 246, 0.05));">
-            <div class="hero-thumb-wrap" style="background: var(--grad-primary); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 32px;">
-              <i class="ph ph-browsers"></i>
+          <a href="article.html?id=hidden-android-developer-tweaks" class="hero-side-card">
+            <div class="hero-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=300&q=80" alt="Android Tweaks"/>
             </div>
             <div>
-              <span class="badge" style="font-size: 9px; padding: 2px 8px; margin-bottom: 6px; background: rgba(6, 182, 212, 0.2);">Feature</span>
-              <h4 style="font-size: 14px; line-height: 1.35; margin-bottom: 6px;">Web Sandbox / In-Browser Playground</h4>
-              <span style="font-size: 12px; color: var(--accent-cyan); font-weight: 600;">Launch Live Tool &rarr;</span>
+              <span class="badge" style="font-size: 9px; padding: 2px 8px; margin-bottom: 6px;">Android</span>
+              <h4 style="font-size: 14px; line-height: 1.35; margin-bottom: 6px;">Hidden Android Developer Tweaks: Unlock Max Performance</h4>
+              <span style="font-size: 12px; color: var(--text-muted);"><i class="ph ph-clock"></i> 6 min read</span>
             </div>
           </a>
         </div>
@@ -229,16 +231,16 @@
         </form>
       </div>
 
-      <!-- In-Browser Sandbox Promo -->
+      <!-- Top Tech Tutorials & Downloads Widget -->
       <div class="widget-card" style="background: radial-gradient(circle at top right, rgba(59,130,246,0.12), transparent 70%), var(--bg-surface);">
-        <span class="badge" style="margin-bottom: 12px;">Interactive Feature</span>
-        <h3 style="font-size: 1.15rem; margin-bottom: 10px;">In-Browser Web Sandbox</h3>
+        <span class="badge" style="margin-bottom: 12px;"><i class="ph ph-download-simple"></i> Featured Guides</span>
+        <h3 style="font-size: 1.15rem; margin-bottom: 10px;">Top Tutorials &amp; Downloads</h3>
         <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 16px;">
-          Test HTML, modern CSS, and JavaScript in our isolated live code editor right in your browser.
+          Explore step-by-step guides with direct APK download links, payload configurations, and YouTube teardowns.
         </p>
-        <a href="playground.html" class="btn-primary" style="display: inline-flex; width: 100%; text-decoration: none;">
-          <span>Launch Playground</span>
-          <i class="ph ph-browsers"></i>
+        <a href="article.html?id=wire-tun-vpn-guide" class="btn-primary" style="display: inline-flex; width: 100%; text-decoration: none;">
+          <span>View Wire Tun Guide</span>
+          <i class="ph ph-arrow-right"></i>
         </a>
       </div>
 
@@ -306,7 +308,6 @@
           <ul class="footer-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="index.html#stories">Latest Stories</a></li>
-            <li><a href="playground.html">Web Sandbox Playground</a></li>
             <li><a href="about.html">About the Team</a></li>
             <li><a href="admin.html" style="color: var(--color-primary);"><i class="ph ph-shield-check"></i> Admin Portal</a></li>
           </ul>

@@ -1028,3 +1028,244 @@
   .hero-main-card { min-height: 380px; padding: 24px; }
   .footer-grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   11. Rich Tech Blog Media Components
+   YouTube Embeds, HTML5 Videos, Download Cards, External Links
+   ============================================================ */
+
+/* 1. Responsive YouTube Video Embed */
+.video-embed-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  margin: 32px 0;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-medium);
+  background: #000;
+}
+
+.video-embed-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: var(--radius-md);
+}
+
+/* 2. HTML5 Web Video Player Card */
+.html5-video-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin: 32px 0;
+  border: 1px solid var(--border-medium);
+  background: #000;
+  box-shadow: var(--shadow-md);
+}
+
+.html5-video-card video {
+  width: 100%;
+  display: block;
+  max-height: 520px;
+  background: #000;
+}
+
+.html5-video-caption {
+  padding: 12px 18px;
+  font-size: 13px;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 3. Professional Tech Download Card / Box */
+.download-card {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(6, 182, 212, 0.05) 100%), var(--bg-surface-elevated);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin: 36px 0;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.download-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--grad-primary);
+}
+
+.download-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.download-card-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.download-file-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  background: var(--grad-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 26px;
+  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+  flex-shrink: 0;
+}
+
+.download-meta-title {
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.download-meta-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.download-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .download-badge {
+  background: rgba(15, 23, 42, 0.07);
+  color: var(--text-primary);
+}
+
+.download-badge.verified {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--accent-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.download-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.btn-download-primary {
+  background: var(--grad-primary);
+  color: #ffffff !important;
+  padding: 12px 26px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 14.5px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 20px rgba(6, 182, 212, 0.35);
+  transition: transform var(--trans-fast), box-shadow var(--trans-fast);
+}
+
+.btn-download-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5);
+  color: #ffffff !important;
+}
+
+.download-mirrors-list {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.download-mirrors-list a {
+  color: var(--accent-cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+
+.download-mirrors-list a:hover {
+  color: var(--accent-blue);
+}
+
+/* 4. External Links with Icon */
+.external-link {
+  color: var(--accent-cyan);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.external-link::after {
+  content: '↗';
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.external-link:hover {
+  color: var(--accent-blue);
+}
+
+/* 5. Article Figure & Captions */
+.article-figure {
+  margin: 32px 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-md);
+}
+
+.article-figure img {
+  width: 100%;
+  display: block;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.article-figure figcaption {
+  padding: 10px 18px;
+  font-size: 13px;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+}

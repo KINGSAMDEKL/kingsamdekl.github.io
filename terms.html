@@ -1,6 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
+  <script>
+    (function() {
+      var t = localStorage.getItem('kingsamtech_theme') || localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Terms of Service — KINGSAMTECH PRO</title>
@@ -21,7 +26,6 @@
       <nav class="nav-menu">
         <a href="index.html" class="nav-link">Home</a>
         <a href="index.html#stories" class="nav-link">Articles</a>
-        <a href="playground.html" class="nav-link"><i class="ph ph-browsers"></i> Web Playground</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="privacy.html" class="nav-link">Privacy</a>
       </nav>
@@ -38,7 +42,7 @@
 
     <div class="article-body">
       <h2>1. Agreement to Terms</h2>
-      <p>By accessing KINGSAMTECH PRO and our Web Sandbox playground, you agree to be bound by these Terms of Service. If you disagree with any portion of these terms, please discontinue your use of our site.</p>
+      <p>By accessing KINGSAMTECH PRO and our tutorials, you agree to be bound by these Terms of Service. If you disagree with any portion of these terms, please discontinue your use of our site.</p>
 
       <h2>2. Intellectual Property &amp; Open Source</h2>
       <p>All written editorial guides, article reviews, and custom styling are proprietary to KINGSAMTECH PRO. Code snippets marked as public tutorials may be freely used for educational and personal programming endeavors with proper backlink attribution.</p>

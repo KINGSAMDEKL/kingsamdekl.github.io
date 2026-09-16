@@ -1,6 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
+  <script>
+    (function() {
+      var t = localStorage.getItem('kingsamtech_theme') || localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Dashboard &amp; CMS — KINGSAMTECH PRO</title>
@@ -383,8 +388,13 @@
             <button type="button" class="toolbar-btn" data-format="code" title="Code Block"><i class="ph ph-code"></i></button>
             <button type="button" class="toolbar-btn" data-format="ul" title="Bulleted List"><i class="ph ph-list-bullets"></i></button>
             <div class="toolbar-divider"></div>
-            <button type="button" class="toolbar-btn" data-format="link" title="Link"><i class="ph ph-link"></i></button>
-            <button type="button" class="toolbar-btn" data-format="image" title="Image"><i class="ph ph-image"></i></button>
+            <button type="button" class="toolbar-btn" data-format="link" title="Internal Link"><i class="ph ph-link"></i></button>
+            <button type="button" class="toolbar-btn" data-format="extlink" title="External Link (Opens new tab with arrow)"><i class="ph ph-arrow-square-out" style="color:var(--admin-primary)"></i></button>
+            <button type="button" class="toolbar-btn" data-format="image" title="Image with Caption"><i class="ph ph-image"></i></button>
+            <div class="toolbar-divider"></div>
+            <button type="button" class="toolbar-btn" data-format="youtube" title="Embed YouTube Video" style="color:#ef4444;"><i class="ph ph-youtube-logo"></i> <span>YouTube</span></button>
+            <button type="button" class="toolbar-btn" data-format="download" title="Insert Professional Download Card" style="color:var(--admin-primary);"><i class="ph ph-file-arrow-down"></i> <span>Download Box</span></button>
+            <button type="button" class="toolbar-btn" data-format="video" title="HTML5 Web Video"><i class="ph ph-video-camera"></i></button>
           </div>
 
           <textarea id="editorContent" class="editor-textarea" placeholder="Write your HTML or markdown content here..."></textarea>

@@ -10,7 +10,7 @@
   let currentItems = [];
 
   const QUICK_ACTIONS = [
-    { title: 'Open Web Sandbox Playground', icon: 'ph-browsers', url: 'playground.html', type: 'Action' },
+    { title: 'Admin Console & Editor', icon: 'ph-shield-check', url: 'admin.html', type: 'Navigation' },
     { title: 'Toggle Dark / Light Mode', icon: 'ph-sun-dim', action: 'toggle-theme', type: 'Preference' },
     { title: 'View Saved Bookmarks', icon: 'ph-bookmark-simple', action: 'open-bookmarks', type: 'Action' },
     { title: 'Filter by AI & Machine Learning', icon: 'ph-cpu', filter: 'ai', type: 'Filter' },
