@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard &amp; CMS — KINGSAMTECH PRO</title>
+  <meta name="description" content="Professional password-protected content management dashboard for KINGSAMTECH PRO."/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="theme-color" content="#050a14"/>
+
+  <!-- Google Fonts: Space Grotesk, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+
+  <!-- Phosphor Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css"/>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="stylesheet" href="assets/css/components.css"/>
+  <link rel="stylesheet" href="assets/css/admin.css"/>
+</head>
+<body class="admin-body">
+
+  <!-- =========================================
+       1. SECURITY LOCK SCREEN OVERLAY
+       ========================================= -->
+  <div class="lock-screen-overlay" id="lockScreenOverlay">
+    <div class="lock-card">
+      <div class="lock-icon-badge">
+        <i class="ph ph-shield-check"></i>
+      </div>
+      <h2 class="lock-title">Admin Console</h2>
+      <p class="lock-subtitle">Authentication required to manage &amp; publish articles</p>
+
+      <form class="lock-form" id="lockForm">
+        <div class="input-group">
+          <label class="input-label" for="lockPasswordInput">Master Password</label>
+          <div class="password-input-wrap">
+            <i class="ph ph-key prefix-icon"></i>
+            <input 
+              type="password" 
+              id="lockPasswordInput" 
+              class="admin-input" 
+              placeholder="Enter master password..."
+              autocomplete="current-password"
+              required
+            />
+            <button type="button" class="toggle-pwd-btn" id="toggleLockPwdBtn" title="Toggle visibility">
+              <i class="ph ph-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="lock-error-msg" id="lockErrorMsg"></div>
+
+        <button type="submit" class="btn-admin-primary">
+          <i class="ph ph-lock-open"></i> Unlock Dashboard
+        </button>
+      </form>
+
+      <div class="lock-footer-hint">
+        <span>Default password: <code style="color:var(--admin-primary); font-family:var(--admin-mono-font);">kingsam2026</code></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       2. TOP ADMIN HEADER
+       ========================================= -->
+  <header class="admin-header">
+    <div class="admin-header-inner">
+      <div style="display:flex; align-items:center; gap:20px;">
+        <a href="index.html" class="admin-brand">
+          <div class="admin-brand-icon">
+            <i class="ph ph-cpu"></i>
+          </div>
+          <span class="admin-brand-title">KINGSAMTECH<span style="color:var(--admin-primary)">PRO</span></span>
+          <span class="admin-badge-portal">PORTAL</span>
+        </a>
+
+        <a href="index.html" target="_blank" class="btn-admin-secondary" style="font-size:12px; padding:6px 12px;" title="Open live website in new tab">
+          <i class="ph ph-arrow-square-out"></i> View Live Site
+        </a>
+      </div>
+
+      <div class="admin-header-actions">
+        <!-- Cloud Sync Status Pill -->
+        <div class="sync-status-pill" id="cloudSyncPill">
+          <div class="sync-pulse-dot"></div>
+          <span>Synced to GitHub</span>
+        </div>
+
+        <!-- Create New Post Button -->
+        <button class="btn-admin-primary btn-action-new-post" style="padding: 9px 16px; font-size: 13px;">
+          <i class="ph ph-plus-circle"></i> New Post
+        </button>
+
+        <!-- Lock / Logout -->
+        <button class="btn-lock" id="adminHeaderLockBtn" title="Lock session">
+          <i class="ph ph-lock"></i> Lock
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================
+       3. NAVIGATION TABS BAR
+       ========================================= -->
+  <div class="admin-tabs-bar">
+    <div class="admin-tabs-container">
+      <button class="admin-tab-btn active" data-view="overviewView">
+        <i class="ph ph-squares-four"></i> Overview
+      </button>
+      <button class="admin-tab-btn" data-view="articlesView">
+        <i class="ph ph-article"></i> All Articles
+      </button>
+      <button class="admin-tab-btn" data-view="editorView">
+        <i class="ph ph-pencil-line"></i> Post Editor
+      </button>
+      <button class="admin-tab-btn" data-view="syncView">
+        <i class="ph ph-cloud-arrow-up"></i> Cloud Deploy
+      </button>
+      <button class="admin-tab-btn" data-view="settingsView">
+        <i class="ph ph-gear"></i> Settings
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================
+       4. MAIN CONTAINER WITH TABBED VIEWS
+       ========================================= -->
+  <main class="admin-container">
+
+    <!-- VIEW 1: OVERVIEW -->
+    <section class="admin-view active" id="overviewView">
+      <div class="view-header">
+        <div class="view-title-group">
+          <h1>Dashboard Overview</h1>
+          <p>Real-time analytics, article metrics, and recent publishing activity</p>
+        </div>
+        <button class="btn-admin-primary btn-action-new-post">
+          <i class="ph ph-pencil-simple-line"></i> Write Article
+        </button>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Total Articles</span>
+            <span class="stat-value" id="statTotalPosts">0</span>
+          </div>
+          <div class="stat-icon cyan">
+            <i class="ph ph-newspaper"></i>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Published</span>
+            <span class="stat-value" id="statPublished">0</span>
+          </div>
+          <div class="stat-icon green">
+            <i class="ph ph-check-circle"></i>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Drafts</span>
+            <span class="stat-value" id="statDrafts">0</span>
+          </div>
+          <div class="stat-icon amber">
+            <i class="ph ph-clock"></i>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <span class="stat-label">Total Words Written</span>
+            <span class="stat-value" id="statTotalWords">0</span>
+          </div>
+          <div class="stat-icon purple">
+            <i class="ph ph-text-aa"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions Banner -->
+      <div class="quick-actions-banner">
+        <div class="banner-text">
+          <h3>Welcome to KINGSAMTECH PRO Publisher</h3>
+          <p>Create new articles with live preview, update tutorials, or deploy directly to GitHub Pages with 1-click cloud sync.</p>
+        </div>
+        <div class="banner-btns">
+          <button class="btn-admin-primary btn-action-new-post">
+            <i class="ph ph-plus"></i> Create Post
+          </button>
+          <button class="btn-admin-secondary" onclick="window.kstAdmin.syncToGitHub()">
+            <i class="ph ph-cloud-arrow-up"></i> Sync to GitHub
+          </button>
+        </div>
+      </div>
+
+      <!-- Recent Posts Card -->
+      <div class="articles-table-card">
+        <div style="padding: 20px 24px; border-bottom: 1px solid var(--admin-card-border); display:flex; justify-content:space-between; align-items:center;">
+          <h3 style="font-family:var(--admin-heading-font); font-size: 16px;">Recent Articles</h3>
+          <button class="btn-admin-secondary" onclick="document.querySelector('.admin-tab-btn[data-view=articlesView]').click()" style="font-size:12px; padding:6px 12px;">
+            View All Articles <i class="ph ph-arrow-right"></i>
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Article</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Published Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="recentActivityList">
+              <!-- Populated dynamically by admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: ARTICLES MANAGER -->
+    <section class="admin-view" id="articlesView">
+      <div class="view-header">
+        <div class="view-title-group">
+          <h1>Manage Articles</h1>
+          <p>Search, modify, preview, duplicate, or delete any tech tutorial or review</p>
+        </div>
+        <button class="btn-admin-primary btn-action-new-post">
+          <i class="ph ph-plus"></i> Add New Article
+        </button>
+      </div>
+
+      <!-- Manager Toolbar -->
+      <div class="manager-toolbar">
+        <div class="search-input-wrap">
+          <i class="ph ph-magnifying-glass"></i>
+          <input type="text" id="articlesSearchInput" class="admin-input" placeholder="Search by title, excerpt, or slug..."/>
+        </div>
+
+        <div class="filter-selects">
+          <select id="articlesFilterCategory" class="admin-select">
+            <option value="">All Categories</option>
+          </select>
+          <select id="articlesFilterStatus" class="admin-select">
+            <option value="">All Statuses</option>
+            <option value="published">Published</option>
+            <option value="draft">Drafts</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Articles Data Table -->
+      <div class="articles-table-card">
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Article</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Read Time</th>
+                <th style="text-align: right; padding-right: 28px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="articlesTableBody">
+              <!-- Populated dynamically by admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: PROFESSIONAL POST EDITOR -->
+    <section class="admin-view" id="editorView">
+      <div class="view-header">
+        <div class="view-title-group">
+          <h1 id="editorHeadingText">Create New Post</h1>
+          <p>Compose rich articles with formatting tools and real-time live preview</p>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button class="btn-admin-secondary" id="btnEditorSaveDraft">
+            <i class="ph ph-clock"></i> Save as Draft
+          </button>
+          <button class="btn-admin-primary" id="btnEditorSavePublish">
+            <i class="ph ph-paper-plane-tilt"></i> Save &amp; Publish
+          </button>
+        </div>
+      </div>
+
+      <div class="editor-layout">
+        <!-- Left: Form Controls -->
+        <div class="editor-form-pane">
+          <h3 class="form-section-title"><i class="ph ph-sliders"></i> Metadata &amp; SEO</h3>
+
+          <div class="form-group">
+            <label for="editorTitle">Article Title *</label>
+            <input type="text" id="editorTitle" class="form-control" placeholder="e.g. Wire Tun APK: The Ultimate Connection &amp; Latency Guide" required/>
+          </div>
+
+          <div class="form-group">
+            <label for="editorSlug">URL Slug (auto-generated)</label>
+            <input type="text" id="editorSlug" class="form-control" placeholder="wire-tun-apk-ultimate-guide" style="font-family:var(--admin-mono-font); font-size:13px;"/>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="editorCategory">Category</label>
+              <select id="editorCategory" class="form-control">
+                <option value="Cybersecurity &amp; VPN">Cybersecurity &amp; VPN</option>
+                <option value="AI &amp; Machine Learning">AI &amp; Machine Learning</option>
+                <option value="Android &amp; Mobile Tech">Android &amp; Mobile Tech</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Hardware &amp; Gadgets">Hardware &amp; Gadgets</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="editorAuthorName">Author Name</label>
+              <input type="text" id="editorAuthorName" class="form-control" value="Kingsam"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="editorExcerpt">Excerpt / Meta Description (SEO)</label>
+            <textarea id="editorExcerpt" class="form-control" rows="2" placeholder="Brief 1-2 sentence hook for search engines and post previews..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="editorCoverImage">Cover Image URL</label>
+            <input type="url" id="editorCoverImage" class="form-control" placeholder="https://images.unsplash.com/..."/>
+            
+            <!-- Quick Cover Presets -->
+            <div class="preset-covers-wrap">
+              <span class="preset-chip" data-url="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1200&q=80">Cyber / Network</span>
+              <span class="preset-chip" data-url="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80">AI / Neural</span>
+              <span class="preset-chip" data-url="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80">Security Shield</span>
+              <span class="preset-chip" data-url="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80">Mobile Smartphone</span>
+              <span class="preset-chip" data-url="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80">Code / Development</span>
+            </div>
+
+            <div class="cover-preview-box" id="editorCoverThumbPreview">
+              <div class="cover-preview-placeholder"><i class="ph ph-image"></i> Cover preview</div>
+            </div>
+          </div>
+
+          <div class="toggle-options-grid">
+            <label class="custom-checkbox-label">
+              <input type="checkbox" id="editorFeatured"/>
+              <span>Feature on Homepage Hero</span>
+            </label>
+            <label class="custom-checkbox-label">
+              <input type="checkbox" id="editorTrending"/>
+              <span>Mark as Trending</span>
+            </label>
+          </div>
+
+          <h3 class="form-section-title" style="margin-top: 24px;"><i class="ph ph-code"></i> Article Content</h3>
+
+          <!-- Formatting Toolbar -->
+          <div class="editor-toolbar">
+            <button type="button" class="toolbar-btn" data-format="bold" title="Bold (**text**)"><i class="ph ph-text-b"></i></button>
+            <button type="button" class="toolbar-btn" data-format="italic" title="Italic (*text*)"><i class="ph ph-text-italic"></i></button>
+            <div class="toolbar-divider"></div>
+            <button type="button" class="toolbar-btn" data-format="h2" title="Heading 2 (H2)"><i class="ph ph-text-h-two"></i></button>
+            <button type="button" class="toolbar-btn" data-format="h3" title="Heading 3 (H3)"><i class="ph ph-text-h-three"></i></button>
+            <div class="toolbar-divider"></div>
+            <button type="button" class="toolbar-btn" data-format="quote" title="Blockquote"><i class="ph ph-quotes"></i></button>
+            <button type="button" class="toolbar-btn" data-format="code" title="Code Block"><i class="ph ph-code"></i></button>
+            <button type="button" class="toolbar-btn" data-format="ul" title="Bulleted List"><i class="ph ph-list-bullets"></i></button>
+            <div class="toolbar-divider"></div>
+            <button type="button" class="toolbar-btn" data-format="link" title="Link"><i class="ph ph-link"></i></button>
+            <button type="button" class="toolbar-btn" data-format="image" title="Image"><i class="ph ph-image"></i></button>
+          </div>
+
+          <textarea id="editorContent" class="editor-textarea" placeholder="Write your HTML or markdown content here..."></textarea>
+
+          <div class="editor-footer-info">
+            <span id="editorWordCountDisplay">0 words • ~0 min read</span>
+            <span>Supports HTML tags and syntax styling</span>
+          </div>
+        </div>
+
+        <!-- Right: Real-time Live Preview -->
+        <div class="editor-preview-pane">
+          <div class="preview-header-bar">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="preview-badge"><i class="ph ph-eye"></i> Reader Preview</span>
+              <span style="font-size:12px; color:var(--admin-text-dim);">Live rendering</span>
+            </div>
+            <span style="font-size:11px; color:var(--admin-text-muted);">Exact Article Layout</span>
+          </div>
+
+          <div class="rendered-preview-article" id="renderedPreviewArticle">
+            <img src="" id="previewCover" class="preview-article-cover" alt="Cover"/>
+            <div class="preview-article-category" id="previewCategory">Category</div>
+            <h1 class="preview-article-title" id="previewTitle">Article Title</h1>
+            <div class="preview-article-meta" id="previewMeta">By Author • Today • 5 min read</div>
+            <div class="preview-article-body" id="previewBody">Content preview...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: CLOUD SYNC & DEPLOY -->
+    <section class="admin-view" id="syncView">
+      <div class="view-header">
+        <div class="view-title-group">
+          <h1>Cloud Deploy &amp; GitHub Sync</h1>
+          <p>Publish your changes directly to the live GitHub Pages website</p>
+        </div>
+      </div>
+
+      <div class="sync-grid">
+        <!-- 1-Click Sync Card -->
+        <div class="sync-card">
+          <h3><i class="ph ph-cloud-arrow-up" style="color:var(--admin-primary)"></i> 1-Click Live Cloud Sync</h3>
+          <p>This directly commits your updated articles to your GitHub repository and automatically launches the GitHub Pages deployment.</p>
+
+          <ul class="sync-steps-list">
+            <li class="sync-step-item">
+              <span class="sync-step-num">1</span>
+              <span>Edits in this dashboard are saved to your local browser storage instantly.</span>
+            </li>
+            <li class="sync-step-item">
+              <span class="sync-step-num">2</span>
+              <span>Clicking "Publish to Live Site" commits directly to <strong style="color:#fff;">assets/js/articles-data.js</strong> via GitHub REST API.</span>
+            </li>
+            <li class="sync-step-item">
+              <span class="sync-step-num">3</span>
+              <span>GitHub Actions automatically rebuilds and deploys to <strong style="color:var(--admin-primary);">https://kingsamdekl.github.io/github-blog/</strong> in ~30 seconds.</span>
+            </li>
+          </ul>
+
+          <div class="token-config-box">
+            <div style="font-size:13px; font-weight:600; color:var(--admin-text-muted); margin-bottom:6px;">GitHub Token Status:</div>
+            <div id="syncTokenStatusText" style="font-size:14px; margin-bottom:8px;">Checking...</div>
+            <p style="font-size:12px; color:var(--admin-text-dim); margin-bottom:0;">
+              You can configure or change your Personal Access Token in the <a href="javascript:void(0)" onclick="document.querySelector('.admin-tab-btn[data-view=settingsView]').click()" style="color:var(--admin-primary);">Settings Tab</a>.
+            </p>
+          </div>
+
+          <button class="btn-big-publish" id="btnSyncCloudPublish">
+            <i class="ph ph-rocket-launch" style="font-size:20px;"></i> Publish to Live Site (GitHub)
+          </button>
+        </div>
+
+        <!-- Manual Backup / Export Options -->
+        <div class="sync-card">
+          <h3><i class="ph ph-download-simple" style="color:var(--admin-success)"></i> Backup &amp; Manual Export</h3>
+          <p>Export your full articles database or copy the raw JavaScript code for offline backup.</p>
+
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <button class="btn-admin-secondary" id="btnSyncDownloadJs" style="justify-content:center; padding:12px;">
+              <i class="ph ph-file-js"></i> Download articles-data.js
+            </button>
+            <button class="btn-admin-secondary" id="btnSyncCopyJs" style="justify-content:center; padding:12px;">
+              <i class="ph ph-copy"></i> Copy JS Code to Clipboard
+            </button>
+            <button class="btn-admin-secondary" id="btnSyncExportJson" style="justify-content:center; padding:12px;">
+              <i class="ph ph-export"></i> Export Complete JSON Backup
+            </button>
+            
+            <div style="margin-top:10px; padding-top:14px; border-top:1px solid var(--admin-card-border);">
+              <label class="btn-admin-secondary" style="justify-content:center; padding:12px; width:100%; cursor:pointer;">
+                <i class="ph ph-upload"></i> Restore from JSON Backup
+                <input type="file" id="importBackupFileInput" accept=".json" style="display:none;"/>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: SETTINGS -->
+    <section class="admin-view" id="settingsView">
+      <div class="view-header">
+        <div class="view-title-group">
+          <h1>Dashboard Settings</h1>
+          <p>Configure password security and GitHub cloud sync parameters</p>
+        </div>
+      </div>
+
+      <div class="sync-grid">
+        <!-- Change Master Password -->
+        <div class="sync-card">
+          <h3><i class="ph ph-lock-key" style="color:var(--admin-primary)"></i> Change Master Password</h3>
+          <p>Protect your admin dashboard with a strong custom password (stored securely using SHA-256).</p>
+
+          <form id="settingsPasswordForm">
+            <div class="form-group">
+              <label for="currentPasswordInput">Current Password</label>
+              <input type="password" id="currentPasswordInput" class="form-control" required/>
+            </div>
+            <div class="form-group">
+              <label for="newPasswordInput">New Password (min. 6 characters)</label>
+              <input type="password" id="newPasswordInput" class="form-control" required/>
+            </div>
+            <div class="form-group">
+              <label for="confirmPasswordInput">Confirm New Password</label>
+              <input type="password" id="confirmPasswordInput" class="form-control" required/>
+            </div>
+            <button type="submit" class="btn-admin-primary" style="width:100%;">
+              <i class="ph ph-check"></i> Update Password
+            </button>
+          </form>
+        </div>
+
+        <!-- GitHub Connection Settings -->
+        <div class="sync-card">
+          <h3><i class="ph ph-github-logo" style="color:#fff"></i> GitHub Cloud Sync Configuration</h3>
+          <p>Configure your repository and access token for 1-click cloud publishing.</p>
+
+          <form id="settingsGithubForm">
+            <div class="form-group">
+              <label for="settingsGhRepo">Repository (Owner/Repo)</label>
+              <input type="text" id="settingsGhRepo" class="form-control" value="KINGSAMDEKL/github-blog" required/>
+            </div>
+            <div class="form-group">
+              <label for="settingsGhToken">GitHub Personal Access Token (PAT)</label>
+              <input type="password" id="settingsGhToken" class="form-control" placeholder="ghp_..."/>
+              <small style="color:var(--admin-text-dim); display:block; margin-top:4px;">
+                Needs <code style="color:var(--admin-primary)">repo</code> scope. Token stays in your private local browser storage.
+              </small>
+            </div>
+            <button type="submit" class="btn-admin-primary" style="width:100%; margin-bottom:16px;">
+              <i class="ph ph-floppy-disk"></i> Save Cloud Settings
+            </button>
+          </form>
+
+          <div style="padding-top:16px; border-top:1px solid var(--admin-card-border);">
+            <button type="button" class="btn-lock" id="btnResetDefaultData" style="width:100%; justify-content:center;">
+              <i class="ph ph-arrow-counter-clockwise"></i> Reset Articles to Default
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================
+       5. MODALS (PREVIEW & DELETE)
+       ========================================= -->
+  <!-- Preview Modal -->
+  <div class="admin-modal-backdrop" id="previewModal">
+    <div class="admin-modal-box" style="max-width: 820px; max-height: 85vh; overflow-y: auto;">
+      <div id="previewModalContent"></div>
+      <div class="admin-modal-actions" style="margin-top: 24px;">
+        <button class="btn-admin-secondary" id="btnClosePreviewModal">Close Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="admin-modal-backdrop" id="deleteModal">
+    <div class="admin-modal-box">
+      <h3 class="admin-modal-title" style="color:var(--admin-danger);">
+        <i class="ph ph-warning-octagon"></i> Delete Article
+      </h3>
+      <p class="admin-modal-text">
+        Are you sure you want to permanently delete this article? This action cannot be undone.
+      </p>
+      <div class="admin-modal-actions">
+        <button class="btn-admin-secondary" id="btnCancelDelete">Cancel</button>
+        <button class="btn-admin-primary" id="btnConfirmDelete" style="background:var(--admin-danger); color:#fff; box-shadow:0 4px 15px rgba(239,68,68,0.4);">
+          Yes, Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Anchor -->
+  <div class="admin-toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/articles-data.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
