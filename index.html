@@ -81,20 +81,28 @@
   </header>
 
   <!-- Mobile Drawer Backdrop & Drawer -->
-  <div id="drawer-backdrop" style="position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2050; opacity: 0; visibility: hidden; transition: all 0.3s;"></div>
-  <div id="mobile-drawer" style="position: fixed; top: 0; left: 0; width: 280px; height: 100vh; background: var(--bg-surface-elevated); z-index: 2100; transform: translateX(-100%); transition: transform 0.3s ease; padding: 24px; display: flex; flex-direction: column; gap: 20px;">
-    <div style="display: flex; align-items: center; justify-content: space-between;">
-      <span style="font-weight: 800; font-family: var(--font-heading);">MENU</span>
-      <button id="mobile-drawer-close" style="background: none; border: none; color: var(--text-primary); font-size: 20px; cursor: pointer;">
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+  <div id="mobile-drawer" class="mobile-drawer">
+    <div class="drawer-header">
+      <div class="drawer-brand-title">
+        <i class="ph ph-cpu" style="color: var(--accent-cyan); font-size: 20px;"></i>
+        <span>KINGSAMTECH<span class="brand-pro" style="margin-left: 4px;">PRO</span></span>
+      </div>
+      <button class="drawer-close-btn" id="mobile-drawer-close" aria-label="Close Menu">
         <i class="ph ph-x"></i>
       </button>
     </div>
-    <div style="display: flex; flex-direction: column; gap: 14px; font-size: 16px; font-weight: 600;">
-      <a href="index.html" class="active"><i class="ph ph-house"></i> Home</a>
-      <a href="index.html#stories"><i class="ph ph-article"></i> Latest Articles</a>
-      <a href="about.html"><i class="ph ph-info"></i> About the Author</a>
-      <a href="privacy.html"><i class="ph ph-shield"></i> Privacy Policy</a>
-      <a href="admin.html" style="color: var(--color-primary);"><i class="ph ph-shield-check"></i> Admin Portal</a>
+    <div class="drawer-nav-list">
+      <a href="index.html" class="drawer-nav-item active"><i class="ph ph-house"></i> Home</a>
+      <a href="index.html#stories" class="drawer-nav-item"><i class="ph ph-article"></i> Latest Articles</a>
+      <a href="about.html" class="drawer-nav-item"><i class="ph ph-info"></i> About Us</a>
+      <a href="privacy.html" class="drawer-nav-item"><i class="ph ph-shield"></i> Privacy Policy</a>
+      <a href="terms.html" class="drawer-nav-item"><i class="ph ph-file-text"></i> Terms of Service</a>
+      <a href="disclaimer.html" class="drawer-nav-item"><i class="ph ph-warning-circle"></i> Disclaimer</a>
+      <a href="admin.html" class="drawer-nav-item" style="color: var(--accent-cyan);"><i class="ph ph-shield-check"></i> Admin Portal</a>
+    </div>
+    <div class="drawer-footer">
+      &copy; 2026 KINGSAMTECH PRO
     </div>
   </div>
 

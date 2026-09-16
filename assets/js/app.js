@@ -35,28 +35,94 @@
 
   // 2. Mobile Drawer Navigation
   function initMobileDrawer() {
-    const toggleBtn = document.getElementById('mobile-drawer-toggle');
-    const drawer = document.getElementById('mobile-drawer');
-    const closeBtn = document.getElementById('mobile-drawer-close');
-    const backdrop = document.getElementById('drawer-backdrop');
+    let backdrop = document.getElementById('drawer-backdrop');
+    let drawer = document.getElementById('mobile-drawer');
 
-    if (!drawer) return;
+    // Self-healing: if drawer markup is missing on any page, inject it automatically
+    if (!drawer) {
+      drawer = document.createElement('div');
+      drawer.id = 'mobile-drawer';
+      drawer.className = 'mobile-drawer';
+      drawer.innerHTML = `
+        <div class="drawer-header">
+          <div class="drawer-brand-title">
+            <i class="ph ph-cpu" style="color: var(--accent-cyan); font-size: 20px;"></i>
+            <span>KINGSAMTECH<span class="brand-pro" style="margin-left: 4px;">PRO</span></span>
+          </div>
+          <button class="drawer-close-btn" id="mobile-drawer-close" aria-label="Close Menu">
+            <i class="ph ph-x"></i>
+          </button>
+        </div>
+        <div class="drawer-nav-list">
+          <a href="index.html" class="drawer-nav-item"><i class="ph ph-house"></i> Home</a>
+          <a href="index.html#stories" class="drawer-nav-item"><i class="ph ph-article"></i> Latest Articles</a>
+          <a href="about.html" class="drawer-nav-item"><i class="ph ph-info"></i> About Us</a>
+          <a href="privacy.html" class="drawer-nav-item"><i class="ph ph-shield"></i> Privacy Policy</a>
+          <a href="terms.html" class="drawer-nav-item"><i class="ph ph-file-text"></i> Terms of Service</a>
+          <a href="disclaimer.html" class="drawer-nav-item"><i class="ph ph-warning-circle"></i> Disclaimer</a>
+          <a href="admin.html" class="drawer-nav-item" style="color: var(--accent-cyan);"><i class="ph ph-shield-check"></i> Admin Portal</a>
+        </div>
+        <div class="drawer-footer">
+          &copy; ${new Date().getFullYear()} KINGSAMTECH PRO
+        </div>
+      `;
+      document.body.appendChild(drawer);
+    }
 
-    function openDrawer() {
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.id = 'drawer-backdrop';
+      backdrop.className = 'drawer-backdrop';
+      document.body.appendChild(backdrop);
+    }
+
+    function openDrawer(e) {
+      if (e) e.preventDefault();
       drawer.classList.add('open');
-      if (backdrop) backdrop.classList.add('show');
+      drawer.style.transform = 'translateX(0)';
+      backdrop.classList.add('show');
+      backdrop.style.opacity = '1';
+      backdrop.style.visibility = 'visible';
+      backdrop.style.pointerEvents = 'auto';
       document.body.style.overflow = 'hidden';
     }
 
     function closeDrawer() {
       drawer.classList.remove('open');
-      if (backdrop) backdrop.classList.remove('show');
+      drawer.style.transform = 'translateX(-100%)';
+      backdrop.classList.remove('show');
+      backdrop.style.opacity = '0';
+      backdrop.style.visibility = 'hidden';
+      backdrop.style.pointerEvents = 'none';
       document.body.style.overflow = '';
     }
 
-    if (toggleBtn) toggleBtn.addEventListener('click', openDrawer);
-    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-    if (backdrop) backdrop.addEventListener('click', closeDrawer);
+    // Attach to all toggle buttons (by id or class)
+    document.querySelectorAll('.mobile-menu-btn, #mobile-drawer-toggle').forEach(btn => {
+      btn.removeEventListener('click', openDrawer);
+      btn.addEventListener('click', openDrawer);
+    });
+
+    // Attach to all close triggers
+    drawer.querySelectorAll('.drawer-close-btn, #mobile-drawer-close').forEach(btn => {
+      btn.removeEventListener('click', closeDrawer);
+      btn.addEventListener('click', closeDrawer);
+    });
+
+    backdrop.removeEventListener('click', closeDrawer);
+    backdrop.addEventListener('click', closeDrawer);
+
+    // Close when tapping any link inside the drawer
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeDrawer);
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) {
+        closeDrawer();
+      }
+    });
   }
 
   // 3. Global Notification Toasts
